@@ -10,6 +10,9 @@ service CipherService {
     
     rpc EncryptColumnar (ColumnarRequest) returns (CipherResponse);
     rpc DecryptColumnar (ColumnarRequest) returns (CipherResponse);
+
+    rpc EncryptOTP (OTPRequest) returns (CipherResponse);
+    rpc DecryptOTP (OTPRequest) returns (CipherResponse);
 }
 
 message CaesarRequest {
@@ -20,6 +23,11 @@ message CaesarRequest {
 message ColumnarRequest {
     bytes text = 1;
     int32 columns = 2;
+}
+
+message OTPRequest {
+    bytes text = 1;
+    bytes key = 2;
 }
 
 message CipherResponse {
