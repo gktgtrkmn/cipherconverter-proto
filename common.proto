@@ -1,0 +1,9 @@
+syntax = "proto3"
+
+package common;
+
+option go_package = "github.com/basarardabaykal/cipherconverter-microservice/internal/pb/common";
+
+message CipherResponse {
+    bytes result = 1;
+}

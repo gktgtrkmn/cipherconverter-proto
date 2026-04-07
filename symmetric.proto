@@ -1,0 +1,33 @@
+syntax = "proto3"
+
+package symmetric;
+
+import "common.proto";
+
+option go_package = "github.com/basarardabaykal/cipherconverter-microservice/internal/pb/symmetric";
+
+message CaesarRequest {
+    bytes text = 1;
+    int32 shift = 2;
+}
+
+message ColumnarRequest {
+    bytes text = 1;
+    int32 columns = 2;
+}
+
+message OTPRequest {
+    bytes text = 1;
+    bytes key = 2;
+}
+
+service CipherService {
+    rpc EncryptCaesar (CaesarRequest) returns (common.CipherResponse);
+    rpc DecryptCaesar (CaesarRequest) returns (common.CipherResponse);
+
+    rpc EncryptColumnar (ColumnarRequest) returns (common.CipherResponse);
+    rpc DecryptColumnar (ColumnarRequest) returns (common.CipherResponse);
+    
+    rpc EncryptOTP (OTPRequest) returns (common.CipherResponse);
+    rpc DecryptOTP (OTPRequest) returns (common.CipherResponse);
+}
